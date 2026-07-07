@@ -34,6 +34,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
 
   private timers: ReturnType<typeof setInterval>[] = [];
+  private counterStartTimer?: ReturnType<typeof setTimeout>;
 
   stats = signal<Stat[]>([
     { value: 0, target: 10000, suffix: '+', prefix: '', label: 'Active Policies', icon: 'policy' },
@@ -71,7 +72,7 @@ export class LandingComponent implements OnInit, OnDestroy {
       this.router.navigate(['/dashboard']);
       return;
     }
-    setTimeout(() => this.animateCounters(), 400);
+    this.counterStartTimer = setTimeout(() => this.animateCounters(), 400);
   }
 
   private animateCounters(): void {
@@ -94,6 +95,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.counterStartTimer) clearTimeout(this.counterStartTimer);
     this.timers.forEach(clearInterval);
   }
 }

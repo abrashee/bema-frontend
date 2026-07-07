@@ -1,8 +1,8 @@
 // src/app/shared/components/header/header.ts
-import { Component, OnInit, signal, computed, inject, HostListener } from '@angular/core';
+import { Component, OnInit, signal, computed, inject, HostListener, DestroyRef } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -20,6 +20,7 @@ import { AuthService } from '../../../features/auth/auth-service';
 export class Header implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
 
   isScrolled = signal(false);
   isMobileMenuOpen = signal(false);
@@ -35,7 +36,10 @@ export class Header implements OnInit {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef)
+      )
       .subscribe((e) => {
         this.isLandingPage.set(e.urlAfterRedirects === '/');
         this.isMobileMenuOpen.set(false);
