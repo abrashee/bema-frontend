@@ -47,7 +47,7 @@
     "@playwright/test": "^1.61.0",
     "@types/jasmine": "~5.1.0",
     "@types/jest": "^30.0.0",
-    "esbuild": "^0.28.1",
+    "esbuild": "^0.28.0",
     "jasmine-core": "~5.9.0",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
