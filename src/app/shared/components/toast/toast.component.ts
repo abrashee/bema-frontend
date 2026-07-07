@@ -1,5 +1,5 @@
 // src/app/shared/components/toast/toast.component.ts
-import { Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
 import { NotificationService, Toast } from '../../services/notification.service';
@@ -15,6 +15,7 @@ interface ActiveToast extends Toast {
   imports: [MatIconModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent implements OnInit, OnDestroy {
   private notificationService = inject(NotificationService);

@@ -1,4 +1,4 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   templateUrl: './landing-header.html',
   styleUrl: './landing-header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingHeader {
   isScrolled = signal(false);
