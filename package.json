@@ -11,7 +11,9 @@
     "build:stats": "ng build --stats-json",
     "analyze:bundle": "npm run build:stats && node scripts/analyze-bundle.cjs",
     "serve:dist": "http-server dist/bema-frontend/browser -p 4173",
-    "lighthouse": "lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --output=json --output-path=lighthouse-report.json"
+    "lighthouse": "lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --output=json --output-path=lighthouse-report.json",
+    "ci:lighthouse": "start-server-and-test serve:dist http://127.0.0.1:4173 \"lighthouse http://127.0.0.1:4173 --chrome-flags=\\\"--headless --no-sandbox\\\" --output=json --output-path=lighthouse-report.json && npm run check:lighthouse\"",
+    "check:lighthouse": "node scripts/check-lighthouse.cjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -54,6 +56,7 @@
     "jest-preset-angular": "^17.0.0",
     "lighthouse": "^13.4.0",
     "playwright": "^1.61.0",
+    "start-server-and-test": "^3.0.11",
     "ts-jest": "^29.4.11",
     "typescript": "~5.9.2"
   }
