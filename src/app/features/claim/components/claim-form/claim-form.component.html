@@ -84,13 +84,10 @@
           class="btn-gradient"
           [disabled]="isSaving() || form.invalid"
         >
-          @if (isSaving()) {
-            <mat-icon class="spin-icon">hourglass_empty</mat-icon>
-            Submitting...
-          } @else {
-            <mat-icon>send</mat-icon>
-            Submit Claim
-          }
+          <mat-icon [class.spin-icon]="isSaving()">
+            {{ isSaving() ? 'hourglass_empty' : 'send' }}
+          </mat-icon>
+          {{ isSaving() ? 'Submitting...' : 'Submit Claim' }}
         </button>
       </div>
     </form>

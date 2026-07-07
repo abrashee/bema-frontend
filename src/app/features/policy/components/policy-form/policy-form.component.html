@@ -79,13 +79,10 @@
             class="btn-gradient"
             [disabled]="isSaving() || form.invalid"
           >
-            @if (isSaving()) {
-              <mat-icon class="spin-icon">hourglass_empty</mat-icon>
-              Saving...
-            } @else {
-              <mat-icon>{{ isEditMode() ? 'save' : 'add_circle' }}</mat-icon>
-              {{ isEditMode() ? 'Save Changes' : 'Create Policy' }}
-            }
+            <mat-icon [class.spin-icon]="isSaving()">
+              {{ isSaving() ? 'hourglass_empty' : isEditMode() ? 'save' : 'add_circle' }}
+            </mat-icon>
+            {{ isSaving() ? 'Saving...' : isEditMode() ? 'Save Changes' : 'Create Policy' }}
           </button>
         </div>
       </form>
