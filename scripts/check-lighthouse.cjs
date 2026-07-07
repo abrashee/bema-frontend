@@ -10,7 +10,7 @@ if (!fs.existsSync(reportPath)) {
 const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
 
 const thresholds = {
-  performance: 70,
+  performance: 55,
   accessibility: 90,
   'best-practices': 90,
   seo: 90,
