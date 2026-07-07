@@ -1,10 +1,8 @@
 // src/app/features/dashboard/dashboard-home.component.ts
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, Injector, OnInit, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { PolicyService } from '../policy/policy-service';
-import { ClaimService } from '../claim/claim-service';
 
 interface StatCard {
   label: string;
@@ -301,8 +299,7 @@ interface RecentActivity {
   `],
 })
 export class DashboardHomeComponent implements OnInit {
-  private policyService = inject(PolicyService);
-  private claimService = inject(ClaimService);
+  private injector = inject(Injector);
 
   statCards = signal<StatCard[]>([
     {
@@ -332,8 +329,16 @@ export class DashboardHomeComponent implements OnInit {
     },
   ]);
 
-  ngOnInit(): void {
-    this.policyService.getAllPolicies().subscribe({
+  async ngOnInit(): Promise<void> {
+    const [{ PolicyService }, { ClaimService }] = await Promise.all([
+      import('../policy/policy-service'),
+      import('../claim/claim-service'),
+    ]);
+
+    const policyService = this.injector.get(PolicyService);
+    const claimService = this.injector.get(ClaimService);
+
+    policyService.getAllPolicies().subscribe({
       next: (res) => {
         if (res.data) {
           this.statCards.update((cards) =>
@@ -348,7 +353,7 @@ export class DashboardHomeComponent implements OnInit {
       },
     });
 
-    this.claimService.getAllClaims().subscribe({
+    claimService.getAllClaims().subscribe({
       next: (res) => {
         if (res.data) {
           const claims = res.data;

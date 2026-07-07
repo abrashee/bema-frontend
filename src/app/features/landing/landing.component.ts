@@ -2,9 +2,7 @@
 import { Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { Header } from '../../shared/components/header/header';
+import { LandingHeader } from '../../shared/components/landing-header/landing-header';
 import { Footer } from '../../shared/components/footer/footer';
 import { AuthService } from '../auth/auth-service';
 
@@ -27,7 +25,7 @@ interface Stat {
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterModule, MatButtonModule, MatIconModule, Header, Footer, DecimalPipe],
+  imports: [RouterModule, LandingHeader, Footer, DecimalPipe],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })

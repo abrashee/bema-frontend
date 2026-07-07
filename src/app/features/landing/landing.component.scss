@@ -98,13 +98,13 @@
   color: #a78bfa;
   margin-bottom: 20px;
 
-  mat-icon { font-size: 14px; width: 14px; height: 14px; }
+  .material-icons { font-size: 14px; width: 14px; height: 14px; }
 
   @media (min-width: 768px) {
     font-size: 13px;
     padding: 6px 16px 6px 10px;
     margin-bottom: 28px;
-    mat-icon { font-size: 16px; width: 16px; height: 16px; }
+    .material-icons { font-size: 16px; width: 16px; height: 16px; }
   }
 }
 
@@ -226,7 +226,7 @@
   color: var(--text-muted);
   font-size: 12px;
 
-  mat-icon {
+  .material-icons {
     font-size: 14px;
     width: 14px;
     height: 14px;
@@ -376,7 +376,7 @@
   font-weight: 600;
   color: var(--text-secondary);
 
-  mat-icon { font-size: 16px; width: 16px; height: 16px; color: #a78bfa; }
+  .material-icons { font-size: 16px; width: 16px; height: 16px; color: #a78bfa; }
 }
 
 .card-value {
@@ -599,14 +599,14 @@
   margin-bottom: 16px;
   transition: transform 0.3s;
 
-  mat-icon { color: white; font-size: 22px; width: 22px; height: 22px; }
+  .material-icons { color: white; font-size: 22px; width: 22px; height: 22px; }
 
   @media (min-width: 768px) {
     width: 56px;
     height: 56px;
     border-radius: 16px;
     margin-bottom: 20px;
-    mat-icon { font-size: 26px; width: 26px; height: 26px; }
+    .material-icons { font-size: 26px; width: 26px; height: 26px; }
   }
 }
 

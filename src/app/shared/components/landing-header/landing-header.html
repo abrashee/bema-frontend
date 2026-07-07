@@ -1,0 +1,35 @@
+<header
+  class="site-header"
+  [class.scrolled]="isScrolled()"
+  [class.landing-transparent]="!isScrolled()"
+>
+  <div class="header-inner">
+    <a routerLink="/" class="logo">
+      <div class="logo-icon-wrap">
+        <span class="material-icons" aria-hidden="true">security</span>
+      </div>
+      <span class="logo-text">BEMA</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#stats" class="nav-link">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <a routerLink="/auth/login" class="btn-ghost-nav">Sign in</a>
+      <a routerLink="/auth/register" class="btn-gradient-header">Get Started</a>
+
+      <button type="button" class="hamburger" (click)="toggleMobileMenu()" aria-label="Menu">
+        <span class="material-icons" aria-hidden="true">{{ isMobileMenuOpen() ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+  </div>
+
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-menu">
+      <a routerLink="/auth/login" class="mobile-link" (click)="toggleMobileMenu()">Sign in</a>
+      <a routerLink="/auth/register" class="mobile-link mobile-cta" (click)="toggleMobileMenu()">Get Started</a>
+    </div>
+  }
+</header>

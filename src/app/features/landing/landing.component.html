@@ -1,5 +1,5 @@
 // src/app/features/landing/landing.component.html
-<app-header />
+<app-landing-header />
 
 <!-- ─── Hero ───────────────────────────────────────────────────────────────── -->
 <section class="hero">
@@ -12,7 +12,7 @@
 
   <div class="hero-content">
     <div class="hero-badge">
-      <mat-icon>auto_awesome</mat-icon>
+      <span class="material-icons" aria-hidden="true">auto_awesome</span>
       <span>Next-gen insurance platform</span>
     </div>
     <h1 class="hero-title">
@@ -24,26 +24,26 @@
       smart policy tools, and instant notifications — all in one beautiful platform.
     </p>
     <div class="hero-actions">
-      <a routerLink="/auth/register" mat-flat-button class="btn-hero-primary">
-        <mat-icon>rocket_launch</mat-icon>
+      <a routerLink="/auth/register" class="btn-hero-primary">
+        <span class="material-icons" aria-hidden="true">rocket_launch</span>
         Start Free Today
       </a>
-      <a routerLink="/auth/login" mat-stroked-button class="btn-hero-secondary">
-        <mat-icon>login</mat-icon>
+      <a routerLink="/auth/login" class="btn-hero-secondary">
+        <span class="material-icons" aria-hidden="true">login</span>
         Sign In
       </a>
     </div>
     <div class="hero-trust">
       <div class="trust-item">
-        <mat-icon>lock</mat-icon>
+        <span class="material-icons" aria-hidden="true">lock</span>
         <span>Bank-grade security</span>
       </div>
       <div class="trust-item">
-        <mat-icon>speed</mat-icon>
+        <span class="material-icons" aria-hidden="true">speed</span>
         <span>Real-time updates</span>
       </div>
       <div class="trust-item">
-        <mat-icon>verified</mat-icon>
+        <span class="material-icons" aria-hidden="true">verified</span>
         <span>98% approval rate</span>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="hero-float-card card-main glass">
         <div class="card-header-row">
         <span class="card-chip premium">CAR</span>
-          <mat-icon class="card-icon">security</mat-icon>
+          <span class="material-icons card-icon" aria-hidden="true">security</span>
         </div>
         <div class="card-title">Auto Insurance</div>
         <div class="card-value">$1,200 / yr</div>
@@ -68,13 +68,13 @@
       </div>
       <div class="hero-float-card card-secondary glass">
         <div class="card-mini-header">
-          <mat-icon>assignment_turned_in</mat-icon>
+          <span class="material-icons" aria-hidden="true">assignment_turned_in</span>
           <span>Claim #1042 Approved</span>
         </div>
         <div class="card-mini-amount">+ $3,450.00</div>
       </div>
       <div class="hero-float-card card-tertiary glass">
-        <mat-icon>notifications_active</mat-icon>
+        <span class="material-icons" aria-hidden="true">notifications_active</span>
         <span>Real-time update received</span>
       </div>
     </div>
@@ -88,7 +88,7 @@
       @for (stat of stats(); track stat.label) {
         <div class="stat-card glass glass-hover">
           <div class="stat-icon-wrap">
-            <mat-icon>{{ stat.icon }}</mat-icon>
+            <span class="material-icons" aria-hidden="true">{{ stat.icon }}</span>
           </div>
           <div class="stat-value">
             {{ stat.prefix }}{{ stat.value | number }}{{ stat.suffix }}
@@ -113,7 +113,7 @@
       @for (feature of features; track feature.title) {
         <div class="feature-card glass glass-hover">
           <div class="feature-icon-wrap" [style.background]="feature.gradient">
-            <mat-icon>{{ feature.icon }}</mat-icon>
+            <span class="material-icons" aria-hidden="true">{{ feature.icon }}</span>
           </div>
           <h3 class="feature-title">{{ feature.title }}</h3>
           <p class="feature-desc">{{ feature.description }}</p>
@@ -131,11 +131,11 @@
       <h2 class="cta-title">Ready to protect <span class="gradient-text-accent">what matters?</span></h2>
       <p class="cta-subtitle">Join thousands who trust BEMA to manage their insurance needs.</p>
       <div class="cta-actions">
-        <a routerLink="/auth/register" mat-flat-button class="btn-hero-primary">
-          <mat-icon>rocket_launch</mat-icon>
+        <a routerLink="/auth/register" class="btn-hero-primary">
+          <span class="material-icons" aria-hidden="true">rocket_launch</span>
           Get Started Free
         </a>
-        <a routerLink="/auth/login" mat-stroked-button class="btn-cta-ghost">
+        <a routerLink="/auth/login" class="btn-cta-ghost">
           Already have an account? Sign in
         </a>
       </div>
