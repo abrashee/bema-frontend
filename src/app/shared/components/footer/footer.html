@@ -1,0 +1,49 @@
+// src/app/shared/components/footer/footer.html
+<footer class="site-footer">
+  <div class="footer-gradient-bar"></div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <mat-icon>security</mat-icon>
+        <span>BEMA</span>
+      </div>
+      <p class="footer-tagline">Protecting what matters most, one policy at a time.</p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a routerLink="/dashboard/policies">Policies</a>
+        <a routerLink="/dashboard/claim">Claims</a>
+        <a routerLink="/dashboard">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} BEMA Insurance Platform. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" class="social-link" aria-label="GitHub">
+        <mat-icon>code</mat-icon>
+      </a>
+      <a href="#" class="social-link" aria-label="Twitter">
+        <mat-icon>alternate_email</mat-icon>
+      </a>
+      <a href="#" class="social-link" aria-label="LinkedIn">
+        <mat-icon>work</mat-icon>
+      </a>
+    </div>
+  </div>
+</footer>

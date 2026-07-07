@@ -1,0 +1,27 @@
+// src/app/features/dashboard/dashboard.component.html
+<div class="dashboard-shell" [class.sidebar-collapsed]="sidebarCollapsed()">
+  <app-sidebar
+    [collapsed]="sidebarCollapsed()"
+    (collapsedChange)="sidebarCollapsed.set($event)"
+    [mobileOpen]="mobileSidebarOpen()"
+    (mobileOpenChange)="mobileSidebarOpen.set($event)"
+  />
+
+  <div class="dashboard-main">
+    <app-header />
+
+    <!-- Mobile sidebar toggle FAB -->
+    <button
+      class="mobile-sidebar-fab"
+      mat-mini-fab
+      (click)="openMobileSidebar()"
+      aria-label="Open navigation"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <main class="dashboard-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+// src/app/features/claim/components/claim-list/claim-list.component.html
+<div class="claim-list-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-
+      title">Claims</h1>
+      <p class="page-subtitle">Track and manage your insurance claims</p>
+    </div>
+    <div class="header-actions">
+      <div class="realtime-badge">
+        <span class="realtime-dot"></span>
+        Live updates
+      </div>
+      <a routerLink="/dashboard/claim/new" mat-flat-button class="btn-gradient">
+        <mat-icon>add</mat-icon>
+        File Claim
+      </a>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  @if (isLoading()) {
+    <div class="claims-list">
+      @for (i of [1,2,3,4]; track i) {
+        <div class="claim-row glass">
+          <div class="skeleton" style="height: 20px; width: 80px;"></div>
+          <div class="skeleton" style="height: 20px; width: 150px;"></div>
+          <div class="skeleton" style="height: 24px; width: 100px; border-radius: 12px;"></div>
+          <div class="skeleton" style="height: 20px; width: 120px;"></div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Empty -->
+  @else if (claim().length === 0) {
+    <div class="empty-state glass">
+      <mat-icon class="empty-icon">assignment</mat-icon>
+      <h3>No claims yet</h3>
+      <p>File your first claim when you need to.</p>
+      <a routerLink="/dashboard/claim/new" mat-flat-button class="btn-gradient">
+        <mat-icon>add</mat-icon>
+        File New Claim
+      </a>
+    </div>
+  }
+
+  <!-- Claims List -->
+  @else {
+    <div class="claims-list">
+      @for (claim of claim(); track claim.id) {
+        <div class="claim-row glass" [class.recent-update]="claim.recentUpdate">
+          <div class="claim-id">
+            <span class="id-label">Claim</span>
+            <span class="id-value">#{{ claim.id }}</span>
+          </div>
+
+          <div class="claim-info">
+            @if (claim.description) {
+              <span class="claim-desc">{{ claim.description }}</span>
+            } @else {
+              <span class="claim-desc muted">No description</span>
+            }
+            @if (claim.policyId) {
+              <span class="claim-policy">Policy #{{ claim.policyId }}</span>
+            }
+          </div>
+
+          <div class="claim-status">
+            <span [class]="statusBadgeClass(claim.status)">
+              <mat-icon>{{ statusIcon(claim.status) }}</mat-icon>
+              {{ claim.status }}
+            </span>
+          </div>
+
+          <div class="claim-amount">
+            @if (claim.amount) {
+              <span class="amount">{{ claim.amount | currency }}</span>
+            } @else {
+              <span class="amount muted">—</span>
+            }
+          </div>
+
+          <div class="claim-date">
+            @if (claim.createdAt) {
+              <span>{{ claim.createdAt | date:'MMM d, y' }}</span>
+            }
+          </div>
+
+          @if (claim.recentUpdate) {
+            <div class="update-flash">
+              <mat-icon>bolt</mat-icon>
+              Updated
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

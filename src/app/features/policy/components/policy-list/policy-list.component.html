@@ -1,0 +1,99 @@
+// src/app/features/policy/components/policy-list/policy-list.component.html
+<div class="policy-list-page">
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Policies</h1>
+      <p class="page-subtitle">Manage your insurance policies</p>
+    </div>
+    <a routerLink="/dashboard/policies/new" mat-flat-button class="btn-gradient">
+      <mat-icon>add</mat-icon>
+      New Policy
+    </a>
+  </div>
+
+  <!-- Loading skeleton -->
+  @if (isLoading()) {
+    <div class="policies-grid">
+      @for (i of [1,2,3]; track i) {
+        <div class="policy-card glass">
+          <div class="skeleton" style="height: 24px; width: 120px; margin-bottom: 16px;"></div>
+          <div class="skeleton" style="height: 36px; width: 80%; margin-bottom: 12px;"></div>
+          <div class="skeleton" style="height: 16px; width: 60%; margin-bottom: 8px;"></div>
+          <div class="skeleton" style="height: 16px; width: 40%;"></div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Empty state -->
+  @else if (policies().length === 0) {
+    <div class="empty-state glass">
+      <mat-icon class="empty-icon">policy</mat-icon>
+      <h3>No policies yet</h3>
+      <p>Create your first insurance policy to get started.</p>
+      <a routerLink="/dashboard/policies/new" mat-flat-button class="btn-gradient">
+        <mat-icon>add</mat-icon>
+        Create Policy
+      </a>
+    </div>
+  }
+
+  <!-- Policies Grid -->
+  @else {
+    <div class="policies-grid">
+      @for (policy of policies(); track policy.id) {
+        <div class="policy-card glass glass-hover" [class.expired]="!isActive(policy)">
+          <div class="policy-card-header">
+            <div class="policy-type-wrap">
+              <div class="policy-type-icon">
+                <mat-icon>{{ getPolicyIcon(policy.type) }}</mat-icon>
+              </div>
+              <span [class]="getBadgeClass(policy.type)">{{ policy.type }}</span>
+            </div>
+            <div class="policy-status" [class.active]="isActive(policy)" [class.expired]="!isActive(policy)">
+              <span class="status-dot"></span>
+              {{ isActive(policy) ? 'Active' : 'Expired' }}
+            </div>
+          </div>
+
+          <div class="policy-id">#{{ policy.id }}</div>
+          <div class="policy-premium">{{ policy.premium | currency:'USD':'symbol':'1.0-0' }}<span class="premium-period">/yr</span></div>
+
+          @if (policy.description) {
+            <p class="policy-desc">{{ policy.description }}</p>
+          }
+
+          <div class="policy-dates">
+            <div class="date-row">
+              <mat-icon>calendar_today</mat-icon>
+              <span>{{ policy.startDate | date:'MMM d, y' }}</span>
+              <mat-icon>arrow_forward</mat-icon>
+              <span>{{ policy.endDate | date:'MMM d, y' }}</span>
+            </div>
+          </div>
+
+          <div class="policy-actions">
+            <button mat-stroked-button class="btn-edit" (click)="editPolicy(policy.id)">
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+            <button
+              mat-stroked-button
+              class="btn-delete"
+              (click)="confirmDelete(policy)"
+              [disabled]="deletingId() === policy.id"
+            >
+              @if (deletingId() === policy.id) {
+                <mat-icon>hourglass_empty</mat-icon>
+              } @else {
+                <mat-icon>delete</mat-icon>
+              }
+              Delete
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

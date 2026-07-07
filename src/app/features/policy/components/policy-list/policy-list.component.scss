@@ -1,0 +1,223 @@
+// src/app/features/policy/components/policy-list/policy-list.component.scss
+.policy-list-page {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 3px;
+  letter-spacing: -0.3px;
+
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.add-btn {
+  width: 100%;
+  background: var(--gradient-primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+
+  @media (min-width: 600px) {
+    width: auto;
+  }
+}
+
+// ─── Grid — single column on mobile ──────────────────────────────────────────
+.policies-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+
+  @media (min-width: 540px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.policy-card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.25s;
+
+  &.expired { opacity: 0.7; }
+
+  @media (min-width: 768px) {
+    padding: 22px;
+    gap: 12px;
+  }
+}
+
+.policy-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.policy-type-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.policy-type-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(102, 126, 234, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon { font-size: 16px; width: 16px; height: 16px; color: #a78bfa; }
+
+  @media (min-width: 768px) {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    mat-icon { font-size: 18px; width: 18px; height: 18px; }
+  }
+}
+
+.policy-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+
+  &.active { color: #43e97b; .status-dot { background: #43e97b; box-shadow: 0 0 6px #43e97b; } }
+  &.expired { color: var(--text-muted); .status-dot { background: var(--text-muted); } }
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.policy-id {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.policy-premium {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+
+  .premium-period {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 768px) {
+    font-size: 30px;
+    .premium-period { font-size: 15px; }
+  }
+}
+
+.policy-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.policy-dates {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+
+  mat-icon { font-size: 14px; width: 14px; height: 14px; color: var(--text-muted); }
+}
+
+.policy-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit {
+  flex: 1;
+  color: #a78bfa !important;
+  border-color: rgba(102, 126, 234, 0.3) !important;
+  font-size: 13px !important;
+  &:hover { background: rgba(102, 126, 234, 0.1) !important; }
+}
+
+.btn-delete {
+  flex: 1;
+  color: #f5576c !important;
+  border-color: rgba(245, 87, 108, 0.3) !important;
+  font-size: 13px !important;
+  &:hover:not([disabled]) { background: rgba(245, 87, 108, 0.1) !important; }
+}
+
+// ─── Empty / Loading States ───────────────────────────────────────────────────
+.empty-state {
+  padding: 48px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  .empty-icon { font-size: 48px; width: 48px; height: 48px; color: var(--text-muted); opacity: 0.5; }
+  h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0; }
+  p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+  @media (min-width: 768px) {
+    padding: 60px 40px;
+    .empty-icon { font-size: 56px; width: 56px; height: 56px; }
+    h3 { font-size: 20px; }
+    p { font-size: 14px; }
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

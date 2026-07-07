@@ -1,0 +1,78 @@
+// src/app/shared/components/header/header.html
+<header
+  class="site-header"
+  [class.scrolled]="isScrolled()"
+  [class.landing-transparent]="isLandingPage() && !isScrolled()"
+>
+  <div class="header-inner">
+    <a routerLink="/" class="logo">
+      <div class="logo-icon-wrap">
+        <mat-icon>security</mat-icon>
+      </div>
+      <span class="logo-text">BEMA</span>
+    </a>
+
+    @if (isAuthenticated()) {
+      <nav class="main-nav">
+        <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+          <mat-icon>dashboard</mat-icon>Dashboard
+        </a>
+        <a routerLink="/dashboard/policies" routerLinkActive="active" class="nav-link">
+          <mat-icon>policy</mat-icon>Policies
+        </a>
+        <a routerLink="/dashboard/claim" routerLinkActive="active" class="nav-link">
+          <mat-icon>assignment</mat-icon>Claims
+        </a>
+      </nav>
+    } @else {
+      <nav class="main-nav">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#stats" class="nav-link">About</a>
+      </nav>
+    }
+
+    <div class="header-actions">
+      @if (isAuthenticated()) {
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-btn">
+          <div class="user-avatar">{{ getInitial() }}</div>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <div class="menu-user-info">
+            <strong>{{ currentUser()?.name }}</strong>
+            <small>{{ currentUser()?.email }}</small>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Sign out</span>
+          </button>
+        </mat-menu>
+      } @else {
+        <a routerLink="/auth/login" mat-button class="btn-ghost-nav">Sign in</a>
+        <a routerLink="/auth/register" mat-flat-button class="btn-gradient">Get Started</a>
+      }
+
+      <button mat-icon-button class="hamburger" (click)="toggleMobileMenu()" aria-label="Menu">
+        <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-menu">
+      @if (isAuthenticated()) {
+        <a routerLink="/dashboard" class="mobile-link" (click)="toggleMobileMenu()">Dashboard</a>
+        <a routerLink="/dashboard/policies" class="mobile-link" (click)="toggleMobileMenu()">Policies</a>
+        <a routerLink="/dashboard/claim" class="mobile-link" (click)="toggleMobileMenu()">Claims</a>
+        <button class="mobile-link logout-btn" (click)="logout()">Sign out</button>
+      } @else {
+        <a routerLink="/auth/login" class="mobile-link" (click)="toggleMobileMenu()">Sign in</a>
+        <a routerLink="/auth/register" class="mobile-link mobile-cta" (click)="toggleMobileMenu()">Get Started</a>
+      }
+    </div>
+  }
+</header>

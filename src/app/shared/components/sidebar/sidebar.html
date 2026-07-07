@@ -1,0 +1,64 @@
+// src/app/shared/components/sidebar/sidebar.html
+<!-- Mobile backdrop -->
+<div class="sidebar-backdrop" [class.visible]="mobileOpen" (click)="closeMobile()"></div>
+
+<aside class="sidebar" [class.collapsed]="collapsed" [class.mobile-open]="mobileOpen">
+  <!-- Header -->
+  <div class="sidebar-header">
+    <a routerLink="/dashboard" class="sidebar-logo" (click)="onNavClick()">
+      <div class="sidebar-logo-icon">
+        <mat-icon>security</mat-icon>
+      </div>
+      @if (!collapsed) {
+        <span class="sidebar-logo-text">BEMA</span>
+      }
+    </a>
+
+    <!-- Mobile close button -->
+    <button mat-icon-button class="close-btn" (click)="closeMobile()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <!-- Desktop collapse button -->
+    <button mat-icon-button class="collapse-btn" (click)="toggleCollapse()" [title]="collapsed ? 'Expand' : 'Collapse'">
+      <mat-icon>{{ collapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    @for (item of navItems; track item.route) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+        class="sidebar-item"
+        [title]="collapsed ? item.label : ''"
+        matRipple
+        [matRippleColor]="'rgba(167,139,250,0.1)'"
+        (click)="onNavClick()"
+      >
+        <mat-icon class="sidebar-item-icon">{{ item.icon }}</mat-icon>
+        @if (!collapsed) {
+          <span class="sidebar-item-label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <!-- User -->
+  <div class="sidebar-footer">
+    @if (!collapsed) {
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">{{ getInitial() }}</div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name">{{ currentUser()?.name }}</span>
+          <span class="sidebar-user-role">{{ currentUser()?.role || 'Member' }}</span>
+        </div>
+      </div>
+    }
+    <button mat-icon-button class="logout-btn" (click)="logout()" title="Sign out">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</aside>

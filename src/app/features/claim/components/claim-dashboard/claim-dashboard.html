@@ -1,0 +1,12 @@
+// src/app/features/claim/components/claim-dashboard/claim-dashboard.html
+<button (click)="createClaim()">
+  Create Claim
+</button>
+
+<div *ngIf="claim">
+  <h3>Claim Details</h3>
+
+  <p><strong>ID:</strong> {{ claim?.id }}</p>
+  <p><strong>Status:</strong> {{ claim?.status }}</p>
+  <p><strong>User:</strong> {{ claim?.userId }}</p>
+</div>

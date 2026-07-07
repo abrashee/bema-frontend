@@ -1,0 +1,19 @@
+// src/app/shared/components/toast/toast.component.html
+<div class="toast-container">
+  @for (toast of toasts(); track toast.id) {
+    <div class="toast toast-{{ toast.type }}" [class.removing]="toast.removing">
+      <div class="toast-icon">
+        <mat-icon>{{ iconFor(toast.type) }}</mat-icon>
+      </div>
+      <div class="toast-body">
+        <span class="toast-message">{{ toast.message }}</span>
+      </div>
+      <button class="toast-close" (click)="dismiss(toast.id)">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div class="toast-progress">
+        <div class="toast-progress-bar" [style.width.%]="toast.progress"></div>
+      </div>
+    </div>
+  }
+</div>

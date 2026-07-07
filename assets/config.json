@@ -1,0 +1,5 @@
+{
+  "userApiUrl": "http://user-service:8081/api",
+  "policyApiUrl": "http://policy-service:8082/api",
+  "claimApiUrl": "http://claim-service:8083/api"
+}

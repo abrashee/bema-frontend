@@ -1,0 +1,104 @@
+// src/app/features/auth/components/register.component.html
+<div class="auth-page">
+  <a routerLink="/" class="auth-logo">
+    <mat-icon>shield</mat-icon>
+    <span>BEMA</span>
+  </a>
+
+  <div class="auth-card">
+    <div class="auth-card-header">
+      <h1 class="auth-title">Create account</h1>
+      <p class="auth-subtitle">Join BEMA and secure your future today</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      @if (errorMessage()) {
+        <div class="error-banner">
+          <mat-icon>error_outline</mat-icon>
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <div class="form-field">
+        <label for="name" class="field-label">Full name</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="field-input"
+          [class.is-error]="nameError"
+          placeholder="John Doe"
+          (blur)="registerForm.get('name')?.markAsTouched()"
+        />
+        @if (nameError) {
+          <p class="field-error">{{ nameError }}</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="email" class="field-label">Email address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="field-input"
+          [class.is-error]="emailError"
+          placeholder="you@example.com"
+          (blur)="registerForm.get('email')?.markAsTouched()"
+        />
+        @if (emailError) {
+          <p class="field-error">{{ emailError }}</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="password" class="field-label">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="field-input"
+          [class.is-error]="passwordError"
+          placeholder="••••••••"
+          (blur)="registerForm.get('password')?.markAsTouched()"
+        />
+        @if (passwordError) {
+          <p class="field-error">{{ passwordError }}</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="confirmPassword" class="field-label">Confirm password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          class="field-input"
+          [class.is-error]="confirmPasswordError"
+          placeholder="••••••••"
+          (blur)="registerForm.get('confirmPassword')?.markAsTouched()"
+        />
+        @if (confirmPasswordError) {
+          <p class="field-error">{{ confirmPasswordError }}</p>
+        }
+        @if (!passwordsMatch && registerForm.get('confirmPassword')?.value) {
+          <p class="field-hint">✓ Passwords match</p>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="isLoading()">
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          Creating account...
+        } @else {
+          Create Account
+        }
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account?
+      <a routerLink="/auth/login">Sign in</a>
+    </div>
+  </div>
+</div>

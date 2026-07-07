@@ -1,0 +1,69 @@
+// src/app/features/auth/components/login.component.html
+<div class="auth-page">
+  <a routerLink="/" class="auth-logo">
+    <mat-icon>shield</mat-icon>
+    <span>BEMA</span>
+  </a>
+
+  <div class="auth-card">
+    <div class="auth-card-header">
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-subtitle">Sign in to manage your insurance policies</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      @if (errorMessage()) {
+        <div class="error-banner">
+          <mat-icon>error_outline</mat-icon>
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <div class="form-field">
+        <label for="email" class="field-label">Email address</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="field-input"
+          [class.is-error]="emailError"
+          placeholder="you@example.com"
+          (blur)="loginForm.get('email')?.markAsTouched()"
+        />
+        @if (emailError) {
+          <p class="field-error">{{ emailError }}</p>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="password" class="field-label">Password</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="field-input"
+          [class.is-error]="passwordError"
+          placeholder="••••••••"
+          (blur)="loginForm.get('password')?.markAsTouched()"
+        />
+        @if (passwordError) {
+          <p class="field-error">{{ passwordError }}</p>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="isLoading()">
+        @if (isLoading()) {
+          <span class="spinner"></span>
+          Signing in...
+        } @else {
+          Sign In
+        }
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Don't have an account?
+      <a routerLink="/auth/register">Create one</a>
+    </div>
+  </div>
+</div>
