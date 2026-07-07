@@ -1,6 +1,14 @@
 // src/styles.scss
 @use '@angular/material' as mat;
 
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-latin-400-800.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
 html {
   @include mat.theme(
     (
@@ -75,7 +83,7 @@ body {
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.6;
   overflow-x: hidden;
