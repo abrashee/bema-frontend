@@ -26,6 +26,7 @@ export interface ApiResponse<T> {
 
 export interface AuthData {
   token: string;
+  refreshToken: string;
   user: User;
 }
 
