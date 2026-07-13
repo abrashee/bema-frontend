@@ -71,5 +71,6 @@
     "engine.io-client": {
       "ws": "8.21.0"
     }
-  }
+  },
+  "license": "MIT"
 }
