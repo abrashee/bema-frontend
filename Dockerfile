@@ -14,6 +14,8 @@ RUN npm run build
 # Runtime stage
 FROM nginx:alpine
 
+RUN apk upgrade --no-cache c-ares libexpat
+
 COPY --chown=nginx:nginx --from=build /app/dist/bema-frontend/browser/ /usr/share/nginx/html
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/conf.d/default.conf
 
