@@ -1,4 +1,3 @@
-// src/app/shared/models/index.ts
 export interface User {
   id: string;
   name: string;

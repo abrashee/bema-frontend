@@ -1,4 +1,3 @@
-// src/app/features/landing/landing.component.ts
 import { Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { DecimalPipe } from '@angular/common';

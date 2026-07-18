@@ -1,4 +1,3 @@
-// src/app/shared/components/toast/toast.component.ts
 import { ChangeDetectionStrategy, Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';

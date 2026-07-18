@@ -1,4 +1,3 @@
-// src/app/features/dashboard/dashboard-home.component.ts
 import { Component, Injector, OnInit, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';

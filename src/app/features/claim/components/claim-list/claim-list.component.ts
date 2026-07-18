@@ -1,4 +1,3 @@
-// src/app/features/claim/components/claim-list/claim-list.component.ts
 import { Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';

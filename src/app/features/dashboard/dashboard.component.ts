@@ -1,4 +1,3 @@
-// src/app/features/dashboard/dashboard.component.ts
 import { Component, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';

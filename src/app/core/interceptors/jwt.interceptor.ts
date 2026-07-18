@@ -1,4 +1,3 @@
-// src/app/core/interceptors/jwt.interceptor.ts
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../../features/auth/auth-service';
