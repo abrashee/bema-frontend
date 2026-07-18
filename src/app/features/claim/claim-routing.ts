@@ -1,4 +1,3 @@
-// src/app/features/claim/claim-routing.ts
 import { Routes } from '@angular/router';
 
 export const claimRoutes: Routes = [

@@ -1,4 +1,3 @@
-// src/app/features/policy/policy-routing.ts
 import { Routes } from '@angular/router';
 
 export const policyRoutes: Routes = [

@@ -1,4 +1,3 @@
-// src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { appConfig } from './app/app.config';

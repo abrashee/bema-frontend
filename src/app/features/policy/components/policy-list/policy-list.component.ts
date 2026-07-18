@@ -1,4 +1,3 @@
-// src/app/features/policy/components/policy-list/policy-list.component.ts
 import { Component, OnInit, signal, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';

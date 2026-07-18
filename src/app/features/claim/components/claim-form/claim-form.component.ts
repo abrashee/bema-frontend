@@ -1,4 +1,3 @@
-// src/app/features/claim/components/claim-form/claim-form.component.ts
 import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
