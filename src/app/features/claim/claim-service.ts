@@ -13,6 +13,8 @@ export class ClaimService {
 
   private socket: Socket;
   private claimUpdates$ = new Subject<Claim>();
+  private connected = false;
+  private pendingClaimRooms = new Set<string>();
 
   constructor() {
     this.socket = io(environment.websocketUrl, {
@@ -25,6 +27,20 @@ export class ClaimService {
 
     this.socket.on('claim-updated', (data: Claim) => {
       this.claimUpdates$.next(data);
+    });
+
+    this.socket.on('connect', () => {
+      this.connected = true;
+
+      this.pendingClaimRooms.forEach((claimId) => {
+        this.socket.emit('join-claim-room', claimId);
+      });
+
+      this.pendingClaimRooms.clear();
+    });
+
+    this.socket.on('disconnect', () => {
+      this.connected = false;
     });
 
     if (localStorage.getItem('bema_auth_token')) {
@@ -60,7 +76,12 @@ export class ClaimService {
   }
 
   joinClaimRoom(claimId: string): void {
-    this.socket.emit('join-claim-room', claimId);
+    if (this.connected) {
+      this.socket.emit('join-claim-room', claimId);
+      return;
+    }
+
+    this.pendingClaimRooms.add(claimId);
   }
 
   onClaimUpdates(): Observable<Claim> {
